@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  worktools:
+    image: gradyfitz/umelbtoolbase
+    container_name: worktools
+    volumes:
+      - .:/home/jovyan/data
+    restart: always
+    command: jupyter notebook --allow-root
+    environment:
+      # Change display to match X11 server IP address
+      # You can use $DISPLAY on Unix systems,
+      # vcXsrv ( https://sourceforge.net/projects/vcxsrv/ ) appears to work for
+      # Windows, you can use the Hyper-V Network interface.
+      DISPLAY: 192.168.0.209:0.0
+    ports:
+      - "8897:8888"
